@@ -8,17 +8,8 @@ if argc() != 1
 endif
 let g:filename = argv(0)
 let g:dict = json_decode(join(readfile(g:filename), ''))
-let g:commands = []
-let g:options = []
-for [g:k, g:v] in items(g:dict)
-  if g:v[0] == ':'
-    let g:options += [g:k]
-  else
-    let g:commands += [g:k]
-  endif
-endfor
-let g:commands = join(sort(g:commands), ' ')
-let g:options = join(sort(g:options), ' ')
+let g:commands = join(sort(keys(g:dict['properties'])), ' ')
+let g:options = join(sort(keys(g:dict['properties']['set']['properties'])), ' ')
 noswapfile edit syntax/zathurarc.vim
 " vint: -ProhibitCommandRelyOnUser -ProhibitCommandWithUnintendedSideEffect
 %substitute/syntax keyword .*Command \zs.*/\=trim(g:commands)/
