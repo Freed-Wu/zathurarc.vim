@@ -8,7 +8,7 @@ syntax case match
 syntax region zathurarcComment start="\%([ \t]*\&\([^\\]\zs\|^\)\)#" end="$"
 syntax match zathurarcBracket /[<>]/ contained
 syntax match zathurarcNotation `<[A-Z][a-z0-9]\+>` contains=zathurarcBracket
-syntax match zathurarcNumber `\<[0-9.]\>`
+syntax match zathurarcNumber `\<[0-9]\+\%(\.[0-9]\+\)\?\>`
 syntax region zathurarcString start=`"` skip=`\\"` end=`"`
 syntax region zathurarcString start=`'` skip=`\\'` end=`'`
 syntax keyword zathurarcMode normal fullscreen presentation index
